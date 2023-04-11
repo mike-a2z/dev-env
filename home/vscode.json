@@ -1,0 +1,7 @@
+{
+  "editor.renderWhitespace": "all",
+  "editor.wordWrap": "on",
+  "editor.suggestSelection": "first",
+  "files.insertFinalNewline": true,
+  "gitblame.ignoreWhitespace": true
+}
