@@ -1,0 +1,42 @@
+version: '3.9'
+networks:
+  dev-env-network:
+    name: dev-env-network
+services:
+  redis7:
+    container_name: redis7
+    image: redis:7.0.10-alpine3.17
+    ports:
+      - 16379:6379
+    volumes:
+      - ./.volumes/redis7/data:/data
+    networks:
+      - dev-env-network
+
+  mysql8:
+    container_name: mysql8
+    image: mysql:8.0.32
+    environment:
+      MYSQL_ROOT_PASSWORD: pa55w0rd
+    ports:
+      - 13308:3306
+    volumes:
+      - ./.volumes/mysql8/data:/var/lib/mysql
+    networks:
+      - dev-env-network
+
+  pg15:
+    container_name: pg15
+    image: postgres:15.2-alpine3.17
+    environment:
+      POSTGRES_PASSWORD: pa55w0rd
+      POSTGRES_USER: root
+    ports:
+      - 15432:5432
+    volumes:
+      - ./.volumes/pg15/data:/var/lib/postgresql/data
+    networks:
+      - dev-env-network
+
+#  dynamo:
+#    image: amazon/dynamodb-local:1.21.0
